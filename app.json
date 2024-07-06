@@ -16,12 +16,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage":"./assets/new.png",
+        "foregroundImage": "./assets/new.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.hackerdev.FoodRideAdmin"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "88a4c9dd-ca2c-456b-8c1b-d67cc4b18ee1"
+      }
     }
   }
 }

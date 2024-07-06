@@ -1,8 +1,27 @@
 import { View, Text,StyleSheet,ScrollView } from 'react-native'
-import React from 'react'
 import OrderCard from './OrderCard'
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios'; // Import axios for making API calls
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
+    const [userorders, setUserorders] = useState([]);
+
+
+    useEffect(() => {
+        usersorders();
+      }, []);
+    
+      const usersorders = async () => {
+        try {
+          const response = await axios.get('https://foodride.viziddecors.com/userswithorders/');
+          setUserorders(response.data.users);
+          
+        } catch (error) {
+          console.error('Error fetching ads:', error);
+          setUserorders([]);
+          throw error;
+        }
+      };
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -10,13 +29,21 @@ export default function HomeScreen() {
         
         <Text style={styles.head}>Recent Orders</Text>
         <ScrollView>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/1.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/22.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/33.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/44.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/44.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-            <OrderCard user={"Idika Ebube"} NoOfFoods={3} image={require("./assets/44.jpeg")} Address={"24B OGBONNA STREET "} phone={"090263453626"}/>
-        </ScrollView>
+      {userorders.map((order, index) => (
+        <OrderCard
+          key={index}
+          user={order.username}
+          NoOfFoods={order.no_of_foods}
+          image={require("./assets/logo.jpeg")}
+          Address={order.address}
+          phone={order.phone}
+          onPress={() => {
+            // Pass restaurant data to the "Food" screen
+            navigation.navigate("Food", { order });
+          }}
+        />
+      ))}
+    </ScrollView>
 
         
         

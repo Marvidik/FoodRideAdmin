@@ -4,10 +4,10 @@
     "slug": "FoodRideAdmin",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/new.png",
+    "icon": "./assets/haha.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/new.png",
+      "image": "./assets/haha.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,7 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/new.png",
+        "foregroundImage": "./assets/haha.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.hackerdev.FoodRideAdmin"
